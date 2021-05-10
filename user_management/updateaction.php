@@ -25,7 +25,7 @@ $subject44 = isset($_POST['subject4']) ? $_POST['subject4'] : "";
 //判断用户ID非空则进行连接
 if (!empty($user_id)) { 
     //建立连接
-    // $conn = mysqli_connect("localhost", "root", "pwd_1234567", "zhongshiyouvs"); 
+    
     require_once('../initial_interface/db_config.php');
     $conn = db_connect();
 
