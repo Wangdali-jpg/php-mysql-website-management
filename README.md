@@ -26,3 +26,5 @@ Based on php and mysql, manage the data in mysql on browsers, including register
 * 将initial_interface，user_management，basic_information_management，supervise_basic_information_management，supervise_management五个文件夹放在PHP的项目文件夹中（在安装PHP的时候会进行设置），必须确保他们处于同一个路径下。
 * 在浏览器中输入inital_interface里面的login.php的路径，回车，即进入到整个系统的入口，在该登陆界面，**用户ID和密码分别为在数据库的user_info表中的user_id和username**。
 * 该程序为对不同的表进行的“增删查改”功能的重复。
+
+2021/5/10
