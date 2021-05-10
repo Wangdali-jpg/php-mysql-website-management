@@ -1,5 +1,5 @@
 <?php
-// $Id:$ //ÉùÃ÷±äÁ¿
+// $Id:$ //å£°æ˜Žå˜é‡
 $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
 $username = isset($_POST['username']) ? $_POST['username'] : "";
 $sex = isset($_POST['sex']) ? $_POST['sex'] : "";
@@ -21,34 +21,34 @@ $subject22 = isset($_POST['subject2']) ? $_POST['subject2'] : "";
 $subject33 = isset($_POST['subject3']) ? $_POST['subject3'] : "";
 
 if ($password == $re_password) { 
-    //½¨Á¢Á¬½Ó
-    // $conn = mysqli_connect("localhost", "root", "pwd_1234567", "zhongshiyouvs"); 
+    //å»ºç«‹è¿žæŽ¥
+ 
     require_once('../initial_interface/db_config.php');
     $conn = db_connect();
-    //×¼±¸SQLÓï¾ä,²éÑ¯ÓÃ»§Ãû
+    //å‡†å¤‡SQLè¯­å¥,æŸ¥è¯¢ç”¨æˆ·å
     $sql_select = "SELECT username FROM user_info WHERE username = '$username'"; 
-    //Ö´ÐÐSQLÓï¾ä
+    //æ‰§è¡ŒSQLè¯­å¥
     $ret = mysqli_query($conn, $sql_select);
     $row = mysqli_fetch_array($ret); 
     $department_name = $subject11["0"];
     $header_name = $subject22["0"];
     $role_name = $subject33["0"];
     
-    //ÅÐ¶ÏÓÃ»§ÃûÊÇ·ñÒÑ´æÔÚ
+    //åˆ¤æ–­ç”¨æˆ·åæ˜¯å¦å·²å­˜åœ¨
     if ($username == $row['username']) { 
-    //ÓÃ»§ÃûÒÑ´æÔÚ£¬ÏÔÊ¾ÌáÊ¾ÐÅÏ¢
+    //ç”¨æˆ·åå·²å­˜åœ¨ï¼Œæ˜¾ç¤ºæç¤ºä¿¡æ¯
          header("Location:register.php?err=1");
         
     } 
     else { 
-        //ÓÃ»§Ãû²»´æÔÚ£¬²åÈëÊý¾Ý 
-        // ×¼±¸SQLÓï¾ä
+        //ç”¨æˆ·åä¸å­˜åœ¨ï¼Œæ’å…¥æ•°æ® 
+        // å‡†å¤‡SQLè¯­å¥
         // $sql_insert = "INSERT INTO user_info(user_id,username,sex,department_id,header_id,role_id,password,phone1,phone2,qq,email,address) 
         // VALUES('$user_id','$username','$sex','$department_id','$header_id','$role_id','$password','$phone1','$phone2','$qq','$email','$address')"; 
         
         // $sql_insert = "INSERT INTO user_info(user_id,username,sex,password,phone1,phone2,qq,email,address) 
         // VALUES('$user_id','$username','$sex','$password','$phone1','$phone2','$qq','$email','$address')"; 
-        //Ö´ÐÐSQLÓï¾ä
+        //æ‰§è¡ŒSQLè¯­å¥
         
         
         $sql_select1 = "SELECT department_id FROM department_info WHERE name = '$department_name'";
@@ -66,13 +66,13 @@ if ($password == $re_password) {
         $row3 = mysqli_fetch_array($ret3);
         $role_id = $row3['role_id'];
         
-        //×¼±¸SQLÓï¾ä
+        //å‡†å¤‡SQLè¯­å¥
         $sql_insert = "INSERT INTO user_info(user_id,username,sex,department_id,header_id,role_id,password,phone1,phone2,qq,email,address) 
         VALUES('$user_id','$username','$sex','$department_id','$header_id','$role_id','$password','$phone1','$phone2','$qq','$email','$address')"; 
         mysqli_query($conn, $sql_insert);
         header("Location:register.php?err=3");
     } 
-    //¹Ø±ÕÊý¾Ý¿â
+    //å…³é—­æ•°æ®åº“
     mysqli_close($conn1);
 } 
 else {
