@@ -3,7 +3,7 @@
 $username = isset($_POST['username']) ? $_POST['username'] : "";
 
     //建立连接
-    // $conn = mysqli_connect("localhost", "root", "pwd_1234567", "zhongshiyouvs"); 
+    
     require_once('../initial_interface/db_config.php');
     $conn = db_connect();
     //准备SQL语句,查询用户名
