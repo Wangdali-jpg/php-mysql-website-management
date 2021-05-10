@@ -1,49 +1,49 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
 require_once('db_config.php');
-// $Id:$ //ÉùÃ÷±äÁ¿
+// $Id:$ //å£°æ˜Žå˜é‡
 $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "";
 $password = isset($_POST['password']) ? $_POST['password'] : "";
 $remember = isset($_POST['remember']) ? $_POST['remember'] : ""; 
-//ÅÐ¶ÏÓÃ»§ÃûºÍÃÜÂëÊÇ·ñÎª¿Õ
+//åˆ¤æ–­ç”¨æˆ·åå’Œå¯†ç æ˜¯å¦ä¸ºç©º
 
 if (!empty($user_id) && !empty($password)) { 
-//½¨Á¢Á¬½Ó
+//å»ºç«‹è¿žæŽ¥
 
-    // $conn = mysqli_connect('localhost', 'root', 'pwd_1234567', 'zhongshiyouvs'); 
+   
     require_once('db_config.php');
     $conn = db_connect();
-    //×¼±¸SQLÓï¾ä
+    //å‡†å¤‡SQLè¯­å¥
     $sql_select = "SELECT user_id,password FROM user_info WHERE user_id = '$user_id' AND password = '$password'"; 
-    //Ö´ÐÐSQLÓï¾ä
+    //æ‰§è¡ŒSQLè¯­å¥
     $ret = mysqli_query($conn,$sql_select);
-    $row = mysqli_fetch_array($ret); //ÅÐ¶ÏÓÃ»§Ãû»òÃÜÂëÊÇ·ñÕýÈ·
+    $row = mysqli_fetch_array($ret); //åˆ¤æ–­ç”¨æˆ·åæˆ–å¯†ç æ˜¯å¦æ­£ç¡®
     
     if ($user_id == $row['user_id'] && $password == $row['password']) 
-    { //Ñ¡ÖÐ¡°¼Ç×¡ÎÒ¡±
+    { //é€‰ä¸­â€œè®°ä½æˆ‘â€
         if ($remember == "on") 
-        { //´´½¨cookie
+        { //åˆ›å»ºcookie
             setcookie("user_id", $user_id, time() + 7 * 24 * 3600);
-        } //¿ªÆôsession
-        session_start(); //´´½¨session
-        $_SESSION['user'] = $user_id; //Ð´ÈëÈÕÖ¾
+        } //å¼€å¯session
+        session_start(); //åˆ›å»ºsession
+        $_SESSION['user'] = $user_id; //å†™å…¥æ—¥å¿—
         $ip = $_SERVER['REMOTE_ADDR'];
         $date = date('Y-m-d H:m:s');
-        $info = sprintf("µ±Ç°·ÃÎÊÓÃ»§£º%s,IPµØÖ·£º%s,Ê±¼ä£º%s /n", $user_id, $ip, $date);
+        $info = sprintf("å½“å‰è®¿é—®ç”¨æˆ·ï¼š%s,IPåœ°å€ï¼š%s,æ—¶é—´ï¼š%s /n", $user_id, $ip, $date);
         $sql_logs = "INSERT INTO logs(user_id,ip,date) VALUES('$user_id','$ip','$date')";
-        //ÈÕÖ¾Ð´ÈëÎÄ¼þ£¬ÈçÊµÏÖ´Ë¹¦ÄÜ£¬ÐèÒª´´½¨ÎÄ¼þÄ¿Â¼logs
+        //æ—¥å¿—å†™å…¥æ–‡ä»¶ï¼Œå¦‚å®žçŽ°æ­¤åŠŸèƒ½ï¼Œéœ€è¦åˆ›å»ºæ–‡ä»¶ç›®å½•logs
         //$f = fopen('./logs/' . date('Ymd') . '.log', 'a+');
         //fwrite($f, $info);
         //fclose($f); 
-        //Ìø×ªµ½loginsucc.phpÒ³Ãæ
-        header("Location:loginsucc.php"); //¹Ø±ÕÊý¾Ý¿â,Ìø×ªÖÁloginsucc.php
+        //è·³è½¬åˆ°loginsucc.phpé¡µé¢
+        header("Location:loginsucc.php"); //å…³é—­æ•°æ®åº“,è·³è½¬è‡³loginsucc.php
         mysqli_close($conn);
     }
     else 
     { 
-        //ÓÃ»§ID»òÃÜÂë´íÎó£¬¸³ÖµerrÎª1
+        //ç”¨æˆ·IDæˆ–å¯†ç é”™è¯¯ï¼Œèµ‹å€¼errä¸º1
         header("Location:login.php?err=1");
     }
-} else { //ÓÃ»§ID»òÃÜÂëÎª¿Õ£¬¸³ÖµerrÎª2
+} else { //ç”¨æˆ·IDæˆ–å¯†ç ä¸ºç©ºï¼Œèµ‹å€¼errä¸º2
     header("Location:login.php?err=2");
 } ?>
