@@ -1,6 +1,11 @@
 # php-mysql-website-management
 Based on php and mysql, manage the data in mysql on browsers, including register, update, search, delete. 
 基于PHP和Mysql，通过浏览器管理Mysql中的数据，功能包括增加，修改，查询和删除（增删查改）。
+***
+## 修改记录
+2020/5/10
+删掉了其他四个文件夹，只保留了user_management文件夹，不影响该文件夹中程序的使用。其他文件夹中的程序的框架和功能完全相同，可以由这个修改得到。
+***
 
 ## 需要的环境和依赖
 * Windows 10
