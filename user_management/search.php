@@ -61,7 +61,7 @@ mysqli_close($conn);
 <table style='text-align:left;border:solid' border="1">	
 <tr><td>用户ID</td><td>用户名</td></tr>
 <?php
-// $conn = mysqli_connect("localhost", "root", "pwd_1234567", "zhongshiyouvs"); 
+
 require_once('../initial_interface/db_config.php');
 $conn = db_connect();
 if($conn){
